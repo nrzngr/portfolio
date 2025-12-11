@@ -14,15 +14,13 @@ export default function Hero({ title = "Creative Developer", subtitle = "Interac
         const timeline = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1.5 } });
 
         timeline
-            .fromTo(
+            .to( // Use .to() since we set initial state in CSS/className
                 '.hero-text-line',
-                { y: '100%' },
-                { y: '0%', stagger: 0.1 }
+                { y: '0%', stagger: 0.1, force3D: true }
             )
-            .fromTo(
+            .to( // Use .to() since we set initial state in CSS/className
                 '.hero-sub',
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 1 },
+                { opacity: 1, y: 0, duration: 1, force3D: true },
                 '-=1'
             );
 
@@ -37,11 +35,11 @@ export default function Hero({ title = "Creative Developer", subtitle = "Interac
                 <h1 ref={titleRef} className="text-[10vw] md:text-[8vw] leading-[0.9] font-black uppercase tracking-tighter mix-blend-difference">
                     {words.map((word, i) => (
                         <div key={i} className="overflow-hidden">
-                            <span className="hero-text-line block">{word}</span>
+                            <span className="hero-text-line block will-change-transform translate-y-full">{word}</span>
                         </div>
                     ))}
                 </h1>
-                <p className="hero-sub mt-8 text-lg md:text-xl font-light tracking-widest uppercase opacity-0 max-w-2xl mx-auto">
+                <p className="hero-sub mt-8 text-lg md:text-xl font-light tracking-widest uppercase opacity-0 max-w-2xl mx-auto will-change-[transform,opacity]">
                     {subtitle}
                 </p>
             </div>
