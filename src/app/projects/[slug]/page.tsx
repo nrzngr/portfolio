@@ -102,7 +102,13 @@ export default async function ProjectPage(props: { params: Promise<{ slug: strin
                     {/* We could render dummy gallery placeholders or if we have array of images */}
                     <div className="aspect-video w-full bg-neutral-900 border border-neutral-800 rounded-lg flex items-center justify-center text-neutral-700 font-mono text-sm uppercase tracking-widest">
                         {project.main_image ? (
-                            <img src={project.main_image} alt={project.title} className="w-full h-full object-cover rounded-lg opacity-50 hover:opacity-100 transition-opacity" />
+                            <img
+                                src={project.main_image}
+                                alt={project.title}
+                                className="w-full h-full object-cover rounded-lg opacity-50 hover:opacity-100 transition-opacity"
+                                // Add Fetch Priority High for LCP
+                                style={{ contentVisibility: 'auto' }}
+                            />
                         ) : 'Project Preview Image'}
                     </div>
                 </div>

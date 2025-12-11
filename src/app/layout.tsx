@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 import SmoothScroll from "@/components/dom/layout/SmoothScroll";
 import MagneticCursor from "@/components/dom/ui/MagneticCursor";
 import Header from "@/components/dom/layout/Header";
+import Preloader from "@/components/dom/ui/Preloader";
 
 export default function RootLayout({
   children,
@@ -34,6 +35,7 @@ export default function RootLayout({
         <SmoothScroll>
           {/* Global Cursor */}
           <MagneticCursor />
+          <Preloader />
           <Header />
           {children}
         </SmoothScroll>
