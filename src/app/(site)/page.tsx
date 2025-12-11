@@ -1,15 +1,14 @@
-import Scene from '@/components/canvas/Scene';
-import FloatingShape from '@/components/canvas/FloatingShape';
 import Hero from '@/components/dom/sections/Hero';
 import BentoGrid from '@/components/dom/ui/BentoGrid';
 import About from '@/components/dom/sections/About';
 import Footer from '@/components/dom/layout/Footer';
 import ExperienceSection from '@/components/dom/sections/Experience';
 import CertificationsSection from '@/components/dom/sections/Certifications';
+import LazyScene from '@/components/canvas/LazyScene';
 import { getProjects, getSiteSettings, getExperiences, getCertifications } from '@/lib/supabase/queries';
 
-// Use dynamic rendering since we are fetching data
-export const dynamic = 'force-dynamic';
+// Revalidate data every hour (ISR) instead of on every request
+export const revalidate = 3600;
 
 export default async function Home() {
   const [projects, settings, experiences, certifications] = await Promise.all([
@@ -21,10 +20,8 @@ export default async function Home() {
 
   return (
     <main className="relative w-full min-h-screen bg-black text-white">
-      {/* 3D Scene Background (Client Island) */}
-      <Scene>
-        <FloatingShape />
-      </Scene>
+      {/* 3D Scene Background (Client Island) - Deferred via Client Wrapper */}
+      <LazyScene />
 
       {/* DOM Content (Foreground) */}
       <Hero
