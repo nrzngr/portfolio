@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+/* Hide default cursor to use custom one */
+body.custom-cursor {
+    cursor: none;
+}
+
+/* Ensure links/buttons also don't show default cursor */
+.custom-cursor a, .custom-cursor button, .custom-cursor .cursor-pointer {
+    cursor: none;
+}
